@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+</head>
+<body>
+</body>
+<script>
+
+$( document ).ready( function (){
+
+	var Q = new Queue();
+	
+	console.log( JSON.stringify( Q ) );
+	
+	
+	for ( var i = 0; i < 10; i++ ){
+		var n = new Node( Math.floor( Math.random() * 100 ) );
+		Q.enqueu( n );
+	}
+	
+
+	console.log( JSON.stringify( Q ) );
+	
+	
+	for ( var i = 0; i < 10; i++ ){
+		Q.dequeue( );
+		console.log( JSON.stringify(  Q ) );
+	}
+	
+	
+	console.log( JSON.stringify( Q ) );
+		
+});
+
+
+
+
+/* queue first in first out */
+var Queue = function(){
+	this.first = null;
+	this.last = null;
+	
+	this.enqueu = function( node ){
+		if ( this.first == null ){
+			this.first = node; 
+			this.last = node;
+		}else{
+			this.last.next = node;
+			this.last = this.last.next;
+		}							
+	}
+	
+	this.dequeue = function( ){
+	 if ( this.first == null ){ return false;	}
+		
+		var n = new Node( this.first.data );
+		this.first = this.first.next;
+							
+		return n;
+		
+	}
+	
+}
+
+var Node = function( d ){
+	this.data = d;
+	this.next = null;
+}
+	
+</script>
+</html>
